@@ -1,11 +1,11 @@
-﻿Console.WriteLine("Hola mundo!");
+﻿using Project01.IntroductionToCsharp.Operators.Arithmetic;
+using Project01.IntroductionToCsharp.Variables;
 
-int numero = 5;
-int numero2 = 10;
-var numero3 = "HOLA COMO ESTAS";
-var numero4 = 67;
+Numbers numbers = new Numbers();
+//numbers.variables();
+Strings strings = new Strings();
+//strings.Variables();
+Calculator calculadora = new Calculator();
+Console.WriteLine("La suma de 2+2 es: " + calculadora.Sum(2,2));
 
-Console.WriteLine(numero);
-Console.WriteLine(numero2);
-Console.WriteLine(numero3);
-Console.WriteLine(numero4);
+//Tarea Multiplicar restar dividir

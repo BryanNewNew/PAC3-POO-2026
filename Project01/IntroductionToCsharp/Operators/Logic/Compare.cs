@@ -38,11 +38,8 @@ namespace Project01.IntroductionToCsharp.Operators.Logic
             Console.WriteLine($"Es mayor {x} y {y}: " + (x > y));
             Console.WriteLine($"Es menor {x} y {y}: " + (x < y));
             Console.WriteLine($"Es mayor o igual {x} y {y}: " + (x >= y));
-            // AND y OR
             Console.WriteLine($"{z} es mayor que {x} y menor que {y}: " + (z > x && z<y)); 
             Console.WriteLine($"{z} es menor que {x} o mayor que {y}: " + (z < x || z>y)); 
-            
-            //Interpolación de strings
             Console.WriteLine($"El valor de {z} es mayor que {x} y menor que {y} :" + (z > x && z<y));
             
         }

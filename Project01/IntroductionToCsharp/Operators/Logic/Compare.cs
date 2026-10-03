@@ -33,14 +33,14 @@ namespace Project01.IntroductionToCsharp.Operators.Logic
 
     public void ValidInterpolation()
         {
-            Console.WriteLine($"Es igual {x} y {y}: " + (x == y));
-            Console.WriteLine($"Es diferente {x} y {y}: " + (x != y));
-            Console.WriteLine($"Es mayor {x} y {y}: " + (x > y));
-            Console.WriteLine($"Es menor {x} y {y}: " + (x < y));
-            Console.WriteLine($"Es mayor o igual {x} y {y}: " + (x >= y));
-            Console.WriteLine($"{z} es mayor que {x} y menor que {y}: " + (z > x && z<y)); 
-            Console.WriteLine($"{z} es menor que {x} o mayor que {y}: " + (z < x || z>y)); 
-            Console.WriteLine($"El valor de {z} es mayor que {x} y menor que {y} :" + (z > x && z<y));
+            Console.WriteLine($"Es igual {x} y {y}: {x == y}");
+            Console.WriteLine($"Es diferente {x} y {y}: {x != y}");
+            Console.WriteLine($"Es mayor {x} y {y}: {x > y}");
+            Console.WriteLine($"Es menor {x} y {y}: {x < y}");
+            Console.WriteLine($"Es mayor o igual {x} y {y}: {x >= y}");
+            Console.WriteLine($"{z} es mayor que {x} y menor que {y}: {z > x && z < y}"); 
+            Console.WriteLine($"{z} es menor que {x} o mayor que {y}: {z < x || z > y}"); 
+            Console.WriteLine($"El valor de {z} es mayor que {x} y menor que {y}: {z > x && z < y}");
             
         }
     }

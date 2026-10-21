@@ -2,7 +2,10 @@
 using Project01.IntroductionToCsharp.Operators.Logic;
 using Project01.IntroductionToCsharp.Variables;
 using Project01.IntroductionToCsharp.ControlStructure;
+<<<<<<< HEAD
 using Project01.IntroductionToCsharp.ArraysLists;
+=======
+>>>>>>> 484b6f50d720b38f99040a56e1fcf96b7f5b0518
 
 Numbers numbers = new Numbers();
 //numbers.variables();
@@ -27,6 +30,7 @@ Conditional conditional = new Conditional();
 // conditional.SwitchClassic();
 //conditional.SwitchExpression();
 Loops Loop = new Loops();
+<<<<<<< HEAD
 // //Loop.For();
 // Console.WriteLine("Ingrese un número para multiplicar: ");
 // // int n1 = int.Parse(Console.ReadLine()!);
@@ -45,3 +49,10 @@ Loops Loop = new Loops();
 LIsts list = new LIsts();
 // list.Products();
 list.ListadeCompras();
+=======
+//Loop.For();
+Console.WriteLine("Ingrese un número para multiplicar: ");
+// int n1 = int.Parse(Console.ReadLine()!);
+int n2 = int.TryParse(Console.ReadLine(), out n2) ? n2 : 0;//Se utiliza para que si el usuario usa algo invalido, se le asigne un valor de 0
+Loop.Multiply(n2);
+>>>>>>> 484b6f50d720b38f99040a56e1fcf96b7f5b0518

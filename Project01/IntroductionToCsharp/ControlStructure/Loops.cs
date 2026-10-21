@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+<<<<<<< HEAD
 using System.Linq.Expressions;
+=======
+>>>>>>> 484b6f50d720b38f99040a56e1fcf96b7f5b0518
 using System.Threading.Tasks;
 
 namespace Project01.IntroductionToCsharp.ControlStructure
 {
     public class Loops
     {
+<<<<<<< HEAD
         public void WhilePyramid()
         {
             int n =5;
@@ -58,6 +62,8 @@ namespace Project01.IntroductionToCsharp.ControlStructure
             }
         }
         
+=======
+>>>>>>> 484b6f50d720b38f99040a56e1fcf96b7f5b0518
         public void For()
        { 
             for (int i = 1; i <= 5; i++)
@@ -73,6 +79,7 @@ namespace Project01.IntroductionToCsharp.ControlStructure
                 Console.WriteLine($"{j} X {number} = {j * number}");
             }
         }
+<<<<<<< HEAD
 
     public void MultiplyLimit(int number, int limit)
         {
@@ -146,3 +153,9 @@ namespace Project01.IntroductionToCsharp.ControlStructure
 
 //Tarea crear de que en la clase que salga que si se pone una letra y el carácter se hace 0 qe salga un texto de opción invalida
 
+=======
+    }
+}
+
+//Tarea crear de que en la clase que salga que si se pone una letra y el caracter se hace 0 qe salga un texto de opcion invalida
+>>>>>>> 484b6f50d720b38f99040a56e1fcf96b7f5b0518

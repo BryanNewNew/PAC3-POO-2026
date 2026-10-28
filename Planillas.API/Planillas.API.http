@@ -1,0 +1,6 @@
+@Planillas.API_HostAddress = http://localhost:5174
+
+GET {{Planillas.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

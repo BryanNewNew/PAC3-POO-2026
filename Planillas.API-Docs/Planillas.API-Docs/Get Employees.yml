@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:5174/api/employees
+  url: http://localhost:5174/api/Employees
   auth: inherit
 
 settings:
@@ -14,3 +14,12 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
+
+docs: |-
+  # # Endpoint para obtener un empleado
+
+  #Endpoint para obtenet un empleado
+
+  El path es: /api/employees/{dni}
+
+  <br/>

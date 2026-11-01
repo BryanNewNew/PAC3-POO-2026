@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Planillas.API.Entities;
 
-namespace Planillas.API.Controllers
+//Este utiliza los controladores y entidades hechas en clase
+
+namespace Planillas.API.Controllers 
 {
     [Route("api/employees1.1")]
     [ApiController]

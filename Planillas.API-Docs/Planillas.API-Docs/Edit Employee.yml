@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "firstName": "Carlos",
-        "lastName": "Perez",
+        "firstName": "Edwin",
+        "lastName": "Ezequiel",
         "dni": "0401-2000-00003",
         "gender": "M",
         "id": 3

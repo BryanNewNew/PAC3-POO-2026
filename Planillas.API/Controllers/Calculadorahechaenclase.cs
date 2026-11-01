@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Planillas.API.Controllers
 {
+    [Route("api/calculadora")]
+     [ApiController]
     public class Calculadorahechaenclase : ControllerBase
     {
         [HttpPost]
@@ -21,12 +23,13 @@ namespace Planillas.API.Controllers
                 _ => 0
 
             };
-            return Ok(new 
+            return Ok(new
+            {
             N1 = calculatorMode1.N1,
             N2 = calculatorMode1.N2,
-            Operator = calculatorMode1.Operator
-            Total = result 
-            );
+            Operator = calculatorMode1.Operator,
+            Total = result
+            });
         }
     }
 

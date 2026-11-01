@@ -4,11 +4,16 @@ info:
   seq: 1
 
 http:
-  method: GET
-  url: ""
+  method: POST
+  url: http://localhost:5174/api/calculadora1.1
   body:
     type: json
-    data: ""
+    data: |
+      {
+        "a": 100,
+        "b": 32,
+        "operacion": "*"
+      }
   auth: inherit
 
 settings:

@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:5174/api/Employees
+  url: http://localhost:5174/api/employees
   auth: inherit
 
 settings:

@@ -5,13 +5,13 @@ info:
 
 http:
   method: POST
-  url: http://localhost:5174/api/Employees
+  url: http://localhost:5174/api/employees
   body:
     type: json
     data: |-
       {
-        "firstName": "Carlos",
-        "lastName": "Perez",
+        "firstName": "Bryan",
+        "lastName": "",
         "dni": "0401-2000-00003",
         "gender": "M",
         "id": 3

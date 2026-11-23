@@ -1,11 +1,11 @@
 info:
-  name: Remove Employee
+  name: Get One Employee
   type: http
-  seq: 5
+  seq: 1
 
 http:
-  method: DELETE
-  url: http://localhost:5174/api/Employees/0401-2000-00002
+  method: GET
+  url: "{{PATH_URL}}/api/Employees/"
   auth: inherit
 
 settings:

@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: http://localhost:5174/api/calculadora1.1
+  url: "{{PATH_URL}}/calculadora1.1"
   body:
     type: json
     data: |

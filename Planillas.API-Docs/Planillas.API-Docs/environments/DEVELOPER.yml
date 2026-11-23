@@ -1,0 +1,5 @@
+name: DEVELOPER
+variables:
+  - name: PATH_URL
+    value: http://localhost:5174/api
+    description: ""

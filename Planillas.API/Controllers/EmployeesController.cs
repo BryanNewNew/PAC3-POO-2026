@@ -26,10 +26,9 @@ namespace Planillas.API.Controllers
          //El metodo contructor se ejecuta en el NEW
         //Ciclofor ciclofor = NEW Ciclofor();
         [HttpGet]
-        public ActionResult<ResponseDto<PageDto<List<EmployeeDto>>>> GetAll()
+        public ActionResult<ResponseDto<PageDto<List<EmployeeDto>>>> GetAll(string searchTerm = "", int page = 1, int pageSize = 10)
         {
-            // TODO: Falta agregar parametros de paginación 
-            var response = _employeeService.GetPage();
+            var response = _employeeService.GetPage(searchTerm, page, pageSize);
             //El  
             return StatusCode(response.StatusCode, new ResponseDto<PageDto<List<EmployeeDto>>>//Darle los datos de ResponseDto
             {

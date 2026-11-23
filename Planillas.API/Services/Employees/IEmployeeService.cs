@@ -8,7 +8,7 @@ namespace Planillas.API.Services.Employees
     public interface IEmployeeService
     {
         //Definir contratos de servicios para empleados va conectada a la capa de datos y a la capa de controladores
-        ResponseDto<PageDto<List<EmployeeDto>>> GetPage(); // Esto llevara ciertos cambios
+        ResponseDto<PageDto<List<EmployeeDto>>> GetPage(string searchTerm = "", int page = 1, int pageSize = 10); // Esto llevara ciertos cambios
         ResponseDto<EmployeeOneDto> GetOneById(Guid Id);
         //No va lógica si se puede no es recomendable
         //Actualmente es sin base de datos

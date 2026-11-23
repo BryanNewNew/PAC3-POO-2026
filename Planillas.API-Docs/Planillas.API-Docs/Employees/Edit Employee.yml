@@ -5,13 +5,13 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:5174/api/Employees/0401-2000-00001
+  url: "{{PATH_URL}}/employees/7a4be039-1039-49d0-9b45-79de494df699"
   body:
     type: json
     data: |-
       {
         "firstName": "Edwin",
-        "lastName": "Ezequiel",
+        "lastName": "",
         "dni": "0401-2000-00003",
         "gender": "M",
         "id": 3

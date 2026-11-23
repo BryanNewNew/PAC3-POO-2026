@@ -7,7 +7,7 @@ namespace Planillas.API.Services.Employees
 {
     public class EmployeeServes : IEmployeeService
     {
-         public ResponseDto<PageDto<List<EmployeeDto>>> GetPage()
+         public ResponseDto<PageDto<List<EmployeeDto>>> GetPage(string searchTerm = "", int page = 1, int pageSize = 10)
         {
             throw new NotImplementedException();
         }

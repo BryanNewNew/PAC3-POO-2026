@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: http://localhost:5174/api/employees
+  url: "{{PATH_URL}}/employees"
   body:
     type: json
     data: |-

@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{PATH_URL}}/api/Employees/"
+  url: "{{PATH_URL}}/Employees/"
   auth: inherit
 
 settings:

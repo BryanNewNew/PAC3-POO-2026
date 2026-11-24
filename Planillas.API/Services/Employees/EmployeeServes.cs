@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+using Planillas.API.Database;
 using Planillas.API.Dtos;
 using Planillas.API.Dtos.Common;
 using Planillas.API.Dtos.Employees;
@@ -7,6 +9,13 @@ namespace Planillas.API.Services.Employees
 {
     public class EmployeeServes : IEmployeeService
     {
+        private readonly PlanillasDbContext _context;//esta es la instancia el _es para sabar que es una variable de clase
+        //o tambien variable global
+
+        public EmployeeServes(PlanillasDbContext context)//ctor metodo constructor
+        {
+            _context = context;//this hace alucion a la variable globa;
+        }
          public ResponseDto<PageDto<List<EmployeeDto>>> GetPage(string searchTerm = "", int page = 1, int pageSize = 10)
         {
             throw new NotImplementedException();
@@ -16,9 +25,31 @@ namespace Planillas.API.Services.Employees
             throw new NotImplementedException();
         }
 
-        public ResponseDto<EmployeeActionResponseDto> Create(EmployeeCreateDto dto)
+        public async Task<ResponseDto<EmployeeActionResponseDto>> CreateAsync(EmployeeCreateDto dto)
         {
-            throw new NotImplementedException();
+            // TODO Metodos asincronos, programacion asincrona
+            var employee = new EmployeeEntity
+            {
+                id = Guid.NewGuid(),//se genera el guid
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                DNI = dto.DNI,
+                Gender = dto.Gender
+
+            };
+
+            _context.Employees.Add(employee);
+            await _context.SaveChangesAsync();
+
+            return new ResponseDto<EmployeeActionResponseDto>
+            {
+                StatusCode = 201,
+                Status = true,
+                Data = new EmployeeActionResponseDto
+                {
+                    Id = employee.id
+                }
+            };
         }
         
         public ResponseDto<EmployeeActionResponseDto> Edit(Guid id, EmployeeEditDto dto)

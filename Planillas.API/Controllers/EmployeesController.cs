@@ -70,9 +70,9 @@ namespace Planillas.API.Controllers
 
         [HttpPost]
 
-        public ActionResult<ResponseDto<EmployeeActionResponseDto>> Post([FromBody] EmployeeCreateDto dto)
+        public async Task<ActionResult<ResponseDto<EmployeeActionResponseDto>>> Post([FromBody] EmployeeCreateDto dto)//se debe convertir a metodo asincrono
         {
-            var response = _employeeService.Create(dto);
+            var response = await _employeeService.CreateAsync(dto);//se debe poner await cuando se llame a una funcion asincrona
 
             return StatusCode(response.StatusCode, new ResponseDto<EmployeeActionResponseDto>
             {

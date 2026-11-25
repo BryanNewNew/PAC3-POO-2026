@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Planillas.API.Constants;
 using Planillas.API.Database;
 using Planillas.API.Dtos;
@@ -10,8 +11,10 @@ namespace Planillas.API.Services.Employees
 {
     public class EmployeeServes : IEmployeeService
     {
+        //TODO Este context trabaja como una lista que es basicamente la lista de la base de datos
         private readonly PlanillasDbContext _context;//esta es la instancia el _es para sabar que es una variable de clase
         //o tambien variable global
+
 
         public EmployeeServes(PlanillasDbContext context)//ctor metodo constructor
         {
@@ -21,14 +24,42 @@ namespace Planillas.API.Services.Employees
         {
             throw new NotImplementedException();
         }
-        public ResponseDto<EmployeeOneDto> GetOneById(Guid Id)
+        public async Task<ResponseDto<EmployeeOneDto>> GetOneById(Guid Id)//TODO siempre se debe mapear la entidad al dto o viceversa
         {
-            throw new NotImplementedException();
+            var entity = await _context.Employees.FirstOrDefaultAsync(e => e.id == Id);
+
+            if(entity == null)
+            {
+                return new ResponseDto<EmployeeOneDto>
+                {
+                  StatusCode = HttpStatusCode.NotFound,
+                  Status = false,
+                  Message =   ResponseMessageConstant.NotFound,
+                };
+            }
+
+
+            return new ResponseDto<EmployeeOneDto>
+            {
+                 StatusCode = HttpStatusCode.Ok,
+                 Status = true,
+                 Message = ResponseMessageConstant.Ok,
+                 Data = new EmployeeOneDto
+                 {
+                     id = entity.id,
+                     FirstName = entity.FirstName,
+                     LastName = entity.LastName,
+                     DNI = entity.DNI,
+                     Gender = entity.Gender
+                 }
+            };
+
         }
 
         public async Task<ResponseDto<EmployeeActionResponseDto>> CreateAsync(EmployeeCreateDto dto)
         {
             // TODO Metodos asincronos, programacion asincrona
+            //TODO Este codigo se puede usar como base es decir es protable debido a que no hay ningun string ni valor exacto a en el.
             var employee = new EmployeeEntity
             {
                 id = Guid.NewGuid(),//se genera el guid
@@ -44,9 +75,10 @@ namespace Planillas.API.Services.Employees
 
             return new ResponseDto<EmployeeActionResponseDto>
             {
-                StatusCode = HttpStatusCode.Create,
+                StatusCode = HttpStatusCode.Created,
                 Status = true,
-                Message = "El registro se ha creado exitosamente",
+                //Message = $"{ResponseMessageConstant.Created}".Replace("@Entidad", "empleado"),//string mágico forma de hacerlo
+                Message = ResponseMessageConstant.Created,
                 Data = new EmployeeActionResponseDto
                 {
                     Id = employee.id

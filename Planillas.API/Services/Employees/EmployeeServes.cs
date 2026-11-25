@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Planillas.API.Constants;
 using Planillas.API.Database;
 using Planillas.API.Dtos;
 using Planillas.API.Dtos.Common;
@@ -43,8 +44,9 @@ namespace Planillas.API.Services.Employees
 
             return new ResponseDto<EmployeeActionResponseDto>
             {
-                StatusCode = 201,
+                StatusCode = HttpStatusCode.Create,
                 Status = true,
+                Message = "El registro se ha creado exitosamente",
                 Data = new EmployeeActionResponseDto
                 {
                     Id = employee.id

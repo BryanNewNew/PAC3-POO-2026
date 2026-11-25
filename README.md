@@ -3,6 +3,10 @@ PROGRAMACIÓN ORIENTADA A OBJETOS
 Proyecto numero 1 
 Este proyecto consiste solo en practica
 
+
+Migraciones
+el nombre de las miigraciones debe ser en mayuscula
+
 EF
 dotnet ef migrations add Init
 solo modificar la base de datos desde api

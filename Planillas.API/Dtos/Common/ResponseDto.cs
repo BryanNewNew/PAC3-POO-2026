@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Planillas.API.Dtos.Common
 {
     public class ResponseDto<T>
     {
+        [JsonIgnore]
         public int StatusCode { get; set; }
         public bool Status { get; set; }
 

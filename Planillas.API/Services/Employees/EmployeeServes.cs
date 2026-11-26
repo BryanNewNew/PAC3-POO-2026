@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Planillas.API.Constants;
 using Planillas.API.Database;
@@ -17,13 +18,21 @@ namespace Planillas.API.Services.Employees
         private readonly PlanillasDbContext _context;//esta es la instancia el _es para sabar que es una variable de clase
         //o tambien variable global
 
+        private readonly int PAGE_SIZE;
+        private readonly int PAGE_SIZE_TYPE;
 
-        public EmployeeServes(PlanillasDbContext context)//ctor metodo constructor
+
+
+        public EmployeeServes(PlanillasDbContext context, IConfiguration configuration)//ctor metodo constructor
         {
-            _context = context;//this hace alucion a la variable globa;
+            _context = context;//this hace alucion a la variable global;
+            PAGE_SIZE = configuration.GetValue<int>("PageSize");
+            PAGE_SIZE_TYPE = configuration.GetValue<int>("PageSizeLimit");
         }
          public ResponseDto<PageDto<List<EmployeeDto>>> GetPage(string searchTerm = "", int page = 1, int pageSize = 10)
         {
+
+
             throw new NotImplementedException();
         }
         public async Task<ResponseDto<EmployeeOneDto>> GetOneById(Guid Id)//TODO siempre se debe mapear la entidad al dto o viceversa
@@ -103,9 +112,30 @@ namespace Planillas.API.Services.Employees
 
         }
 
-        public ResponseDto<EmployeeActionResponseDto> Delete(Guid Id)
+        public async Task<ResponseDto<EmployeeActionResponseDto>> DeleteAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Employees.FirstOrDefaultAsync(e => e.id == Id);
+
+            if(entity == null)
+            {
+                return new ResponseDto<EmployeeActionResponseDto>
+                {
+                  StatusCode = HttpStatusCode.NotFound,
+                  Status = false,
+                  Message =   ResponseMessageConstant.NotFound,
+                };
+            }
+
+            _context.Employees.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return new ResponseDto<EmployeeActionResponseDto>
+            {
+                StatusCode = HttpStatusCode.Ok,
+                Status = true,
+                Message = ResponseMessageConstant.Ok,
+                Data = EmployeeMapper.EntityToActionResponse(entity)
+            };
         }
         //Esta prohibido devolver la entidad en un api, se debe devolver un dto, para no exponer la entidad y que se pueda modificar       
     }

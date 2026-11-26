@@ -18,10 +18,14 @@ namespace Planillas.API.Controllers
         //Solo define la variable sin iniciarlizarla y al inicializarla despues no se podra modificar
        //_variable Es una variable global el guion bajo es para saber que es una variable que se podrá utilizar en cualquier metodo de la clase
         private readonly IEmployeeService _employeeService;
+        private readonly int PAGE_SIZE;
+        private readonly int PAGE_SIZE_TYPE;
 
         public EmployeesController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;//auntomaticamente crea la instancia
+            PAGE_SIZE = 10;
+            PAGE_SIZE_TYPE = 100;
         }
          //El metodo contructor se ejecuta en el NEW
         //Ciclofor ciclofor = NEW Ciclofor();
@@ -99,9 +103,9 @@ namespace Planillas.API.Controllers
 
         [HttpDelete("{id}")]
         
-        public ActionResult<ResponseDto<EmployeeActionResponseDto>> Delete(Guid id)
+        public async Task<ActionResult<ResponseDto<EmployeeActionResponseDto>>> Delete(Guid id)
         {
-           var response = _employeeService.Delete(id);
+           var response = await _employeeService.DeleteAsync(id);
 
            return StatusCode(response.StatusCode, new ResponseDto<EmployeeActionResponseDto>
             {

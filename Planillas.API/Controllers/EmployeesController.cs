@@ -30,9 +30,9 @@ namespace Planillas.API.Controllers
          //El metodo contructor se ejecuta en el NEW
         //Ciclofor ciclofor = NEW Ciclofor();
         [HttpGet]
-        public ActionResult<ResponseDto<PageDto<List<EmployeeDto>>>> GetAll(string searchTerm = "", int page = 1, int pageSize = 10)
+        public async Task<ActionResult<ResponseDto<PageDto<List<EmployeeDto>>>>> GetAll(string searchTerm = "", int page = 1, int pageSize = 10)
         {
-            var response = _employeeService.GetPage(searchTerm, page, pageSize);
+            var response = await _employeeService.GetPageAsync(searchTerm, page, pageSize);
             //El  
             return StatusCode(response.StatusCode, new ResponseDto<PageDto<List<EmployeeDto>>>//Darle los datos de ResponseDto
             {

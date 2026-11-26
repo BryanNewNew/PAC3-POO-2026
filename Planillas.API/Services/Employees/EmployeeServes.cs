@@ -23,10 +23,10 @@ namespace Planillas.API.Services.Employees
 
 
 
-        public EmployeeServes(PlanillasDbContext context, IConfiguration configuration)//ctor metodo constructor
+        public EmployeeServes(PlanillasDbContext context, IConfiguration configuration)//ctor método constructor
         {
             _context = context;//this hace alucion a la variable global;
-            PAGE_SIZE = configuration.GetValue<int>("PageSize");
+            PAGE_SIZE = configuration.GetValue<int>("PageSize");//viene de mi appsettings
             PAGE_SIZE_TYPE = configuration.GetValue<int>("PageSizeLimit");
         }
          public ResponseDto<PageDto<List<EmployeeDto>>> GetPage(string searchTerm = "", int page = 1, int pageSize = 10)

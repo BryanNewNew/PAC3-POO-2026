@@ -42,9 +42,9 @@ namespace Planillas.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ResponseDto<EmployeeOneDto>> GetOneById(Guid id)
+        public async Task<ActionResult<ResponseDto<EmployeeOneDto>>> GetOneById(Guid id)
         {
-            var response = _employeeService.GetOneById(id);
+            var response = await _employeeService.GetOneById(id);
             return StatusCode(response.StatusCode, new ResponseDto<EmployeeOneDto>
             {
                 Status = response.Status,
@@ -84,9 +84,9 @@ namespace Planillas.API.Controllers
 
         [HttpPut("{id}")]
 
-        public ActionResult<ResponseDto<EmployeeActionResponseDto>> Put(Guid id, [FromBody] EmployeeEditDto dto)
-        {
-           var response = _employeeService.Edit(id, dto);
+        public async Task<ActionResult<ResponseDto<EmployeeActionResponseDto>>> Put(Guid id, [FromBody] EmployeeEditDto dto)
+        { 
+           var response = await _employeeService.EditAsync(id, dto);
 
 
             return StatusCode(response.StatusCode, new ResponseDto<EmployeeActionResponseDto>

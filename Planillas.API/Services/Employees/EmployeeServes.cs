@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Planillas.API.Constants;
 using Planillas.API.Database;
@@ -6,6 +7,7 @@ using Planillas.API.Dtos;
 using Planillas.API.Dtos.Common;
 using Planillas.API.Dtos.Employees;
 using Planillas.API.Entities;
+using Planillas.API.Mappers;
 
 namespace Planillas.API.Services.Employees
 {
@@ -41,36 +43,25 @@ namespace Planillas.API.Services.Employees
 
             return new ResponseDto<EmployeeOneDto>
             {
-                 StatusCode = HttpStatusCode.Ok,
+                 StatusCode = HttpStatusCode.Found,
                  Status = true,
-                 Message = ResponseMessageConstant.Ok,
-                 Data = new EmployeeOneDto
-                 {
-                     id = entity.id,
-                     FirstName = entity.FirstName,
-                     LastName = entity.LastName,
-                     DNI = entity.DNI,
-                     Gender = entity.Gender
-                 }
+                 Message = ResponseMessageConstant.Found,
+                 Data = EmployeeMapper.EntityToOneDto(entity)
+
+                 //Este se utilizaba por petición del ingeniero:
+                 //Message = ResponseMessageConstant.Ok,
+                 //StatusCode = HttpStatusCode.Ok,
             };
 
         }
 
         public async Task<ResponseDto<EmployeeActionResponseDto>> CreateAsync(EmployeeCreateDto dto)
         {
-            // TODO Metodos asincronos, programacion asincrona
-            //TODO Este codigo se puede usar como base es decir es protable debido a que no hay ningun string ni valor exacto a en el.
-            var employee = new EmployeeEntity
-            {
-                id = Guid.NewGuid(),//se genera el guid
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                DNI = dto.DNI,
-                Gender = dto.Gender
+            // TODO Métodos asíncronos, programación asíncrona
+            //TODO Este código se puede usar como base es decir es portable debido a que no hay ningún string ni valor exacto a en el.
+            var entity = EmployeeMapper.CreateOneDtoToEntity(dto);
 
-            };
-
-            _context.Employees.Add(employee);
+            _context.Employees.Add(entity);
             await _context.SaveChangesAsync();
 
             return new ResponseDto<EmployeeActionResponseDto>
@@ -79,16 +70,37 @@ namespace Planillas.API.Services.Employees
                 Status = true,
                 //Message = $"{ResponseMessageConstant.Created}".Replace("@Entidad", "empleado"),//string mágico forma de hacerlo
                 Message = ResponseMessageConstant.Created,
-                Data = new EmployeeActionResponseDto
-                {
-                    Id = employee.id
-                }
+                Data = EmployeeMapper.EntityToActionResponse(entity)
             };
         }
         
-        public ResponseDto<EmployeeActionResponseDto> Edit(Guid id, EmployeeEditDto dto)
+        public async Task<ResponseDto<EmployeeActionResponseDto>> EditAsync(Guid id, EmployeeEditDto dto)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Employees.FirstOrDefaultAsync(e => e.id == id);
+            
+            if(entity == null)
+            {
+                return new ResponseDto<EmployeeActionResponseDto>
+                {
+                  StatusCode = HttpStatusCode.NotFound,
+                  Status = false,
+                  Message =   ResponseMessageConstant.NotFound,
+                };
+            }
+            
+            var entityToUpdate = EmployeeMapper.EditDtoToEntity(dto, entity);
+            _context.Employees.Update(entityToUpdate);
+            await _context.SaveChangesAsync();
+
+            return new ResponseDto<EmployeeActionResponseDto>
+            {
+                StatusCode = HttpStatusCode.Ok,
+                Status = true,
+                Message = ResponseMessageConstant.Ok,
+                Data = EmployeeMapper.EntityToActionResponse(entityToUpdate)
+            };
+
+
         }
 
         public ResponseDto<EmployeeActionResponseDto> Delete(Guid Id)

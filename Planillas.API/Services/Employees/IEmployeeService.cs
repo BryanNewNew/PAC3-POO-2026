@@ -13,7 +13,7 @@ namespace Planillas.API.Services.Employees
         //No va lógica si se puede no es recomendable
         //Actualmente es sin base de datos
         Task<ResponseDto<EmployeeActionResponseDto>> CreateAsync(EmployeeCreateDto dto);
-        ResponseDto<EmployeeActionResponseDto> Edit(Guid id, EmployeeEditDto dto);
+        Task<ResponseDto<EmployeeActionResponseDto>> EditAsync(Guid id, EmployeeEditDto dto);
         ResponseDto<EmployeeActionResponseDto> Delete(Guid Id);
 
 

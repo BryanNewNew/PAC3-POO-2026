@@ -1,0 +1,2 @@
+Datos Tipo ASYNC
+En C#, asíncrono (o async) significa que una tarea puede iniciarse, pausarse mientras espera algo lento (como consultar una base de datos, leer un archivo o llamar a otro servicio) y dejar el hilo libre para que el servidor atienda otras peticiones mientras tanto, retomando justo donde se quedó cuando termine.

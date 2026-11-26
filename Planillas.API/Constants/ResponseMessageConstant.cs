@@ -17,5 +17,7 @@ namespace Planillas.API.Constants
         public const string NotFound = "No se ha encontrado ninguna información";
 
         public const string Ok = "Todo salio bien";
+
+        public const string Found = "La información solicitada se ha enviado correctamente"; 
     }
 }

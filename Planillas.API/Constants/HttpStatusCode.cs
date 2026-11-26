@@ -8,6 +8,7 @@ namespace Planillas.API.Constants
         //TODO se puede colocar documentacion para el codigo 
        #region 2xx - Éxito
 
+
         /// <summary>
         /// 200 OK: La solicitud ha tenido éxito.
         /// </summary>
@@ -22,6 +23,16 @@ namespace Planillas.API.Constants
         /// 204 No Content: La solicitud se completó con éxito, pero no hay contenido que devolver en el cuerpo.
         /// </summary>
         public const int NoContent = 204;
+
+        #endregion
+
+        #region 3xx - Redirección 
+        /// <summary>
+        /// 302 Found: Se ha encontrado la petición o la información requerida
+        /// </summary>
+        
+        public const int Found = 302;
+
 
         #endregion
 
